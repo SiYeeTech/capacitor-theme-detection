@@ -6,8 +6,7 @@ export class ThemeDetectionWeb
   extends WebPlugin
   implements ThemeDetectionPlugin
 {
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
+  isDarkModeActive(): Promise<{ active: boolean }> {
+    throw new Error('Method not implemented.');
   }
 }
