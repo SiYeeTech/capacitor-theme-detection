@@ -7,12 +7,16 @@ import Capacitor
  */
 @objc(ThemeDetectionPlugin)
 public class ThemeDetectionPlugin: CAPPlugin {
-    private let implementation = ThemeDetection()
-
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
+    
+    @objc func isDarkModeActive(_ call: CAPPluginCall) {
+        var isDark: Bool = false
+        
+        if #available(iOS 13.0, *) {
+            isDark = self.bridge?.userInterfaceStyle == .dark
+        }
+        
         call.resolve([
-            "value": implementation.echo(value)
+            "active": isDark
         ])
     }
 }
